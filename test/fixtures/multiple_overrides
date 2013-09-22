@@ -1,0 +1,3 @@
+has('test1');
+has('test-2');
+has('test-3');

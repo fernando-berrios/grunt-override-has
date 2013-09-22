@@ -30,22 +30,32 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     override_has: {
-      default_options: {
+      single_override: {
         options: {
+          tests: {
+            debug: false
+          }
         },
         files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
+          'tmp/single_override': ['test/fixtures/single_override'],
         },
       },
-      custom_options: {
+      multiple_overrides: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!',
+          tests: {
+            debug: false,
+            test1: true,
+            test_2: false,
+            test_3: false
+          }
         },
         files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
+          'tmp/multiple_overrides': [
+            'test/fixtures/single_override',
+            'test/fixtures/multiple_overrides'
+            ],
         },
-      },
+      }
     },
 
     // Unit tests.

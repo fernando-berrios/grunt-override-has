@@ -20,63 +20,51 @@ grunt.loadNpmTasks('grunt-override-has');
 ## The "override_has" task
 
 ### Overview
+
+This simple task was inspired by the [RequireJS](http://requirejs.org/) integration feature for [has.js](https://github.com/phiggins42/has.js) that the [optimizer provides](http://requirejs.org/docs/optimization.html#hasjs). It allows you to override the output of tests defined by the has.js API (custom or not) with your value of choice. Coupled with conditional compilation and dead code removal from your minifier of choice (like [UglifyJS](https://github.com/mishoo/UglifyJS2#conditional-compilation) and [Closure Compiler](https://developers.google.com/closure/)) you can easily remove features branches or debugging statements from your code base.
+
 In your project's Gruntfile, add a section named `override_has` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
   override_has: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
+    dev: { // Supports multiple targets.
+      options: {
+        tests: { // Required object with has.js tests to override.
+          debug: true
+        }
+      },
+      files: { // Required list of targets. Supports single or multiple files.
+        'dist/output': ['lib/input1'],
+      },
+    }
   },
 })
 ```
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.tests
+Type: `Object`
+Default value: `{}`
 
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
+An object that contains the has.js tests that will be overwritten. The keys in the object correspond to the test names.
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  override_has: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+To replace blocks of `has('debug')` and `has('log-warn')` configure the task like this. Note that the keys in the `tests` object correspond to the test names. When the test name contains dashes ('-') the key must be underscored (since objects in JS can't have dashes). Follow the naming convention set by has.js and you'll be fine, alternatively you can use camelCasing (e.g. `has('isDebug')`, `has('logWarn')`).
 
 ```js
 grunt.initConfig({
   override_has: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+      tests: {
+        debug: false,
+        log_warn: true
+      }
     },
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'dist/output': ['lib/input1', 'lib/input1'],
     },
   },
 })
