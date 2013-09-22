@@ -1,0 +1,43 @@
+{
+  "name": "grunt-override-has",
+  "description": "Overrides has.js test output. Useful for optimizing unused code paths that can be trimmed via dead code removal.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/prototypef/grunt-override-has",
+  "author": {
+    "name": "Fernando Berrios",
+    "email": "fberrios@gmail.com",
+    "url": "http://weareallrobots.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prototypef/grunt-override-has"
+  },
+  "bugs": {
+    "url": "https://github.com/prototypef/grunt-override-has/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/prototypef/grunt-override-has/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
