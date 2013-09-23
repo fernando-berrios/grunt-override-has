@@ -21,7 +21,7 @@ grunt.loadNpmTasks('grunt-override-has');
 
 ### Overview
 
-This simple task was inspired by the [RequireJS](http://requirejs.org/) integration feature for [has.js](https://github.com/phiggins42/has.js) that the [optimizer provides](http://requirejs.org/docs/optimization.html#hasjs). It allows you to override the output of tests defined by the has.js API (custom or not) with your value of choice. Coupled with conditional compilation and dead code removal from your minifier of choice (like [UglifyJS](https://github.com/mishoo/UglifyJS2#conditional-compilation) and [Closure Compiler](https://developers.google.com/closure/)) you can easily remove features branches or debugging statements from your code base.
+This simple task was inspired by the [RequireJS](http://requirejs.org/) integration feature for [has.js](https://github.com/phiggins42/has.js) that the [optimizer provides](http://requirejs.org/docs/optimization.html#hasjs). It allows you to override the output of tests defined by the has.js API (custom or not) with a value of your choice. Coupled with conditional compilation and dead code removal from your minifier of choice (like [UglifyJS](https://github.com/mishoo/UglifyJS2#conditional-compilation) and [Closure Compiler](https://developers.google.com/closure/)) you can easily remove features branches or debugging statements from your code base.
 
 In your project's Gruntfile, add a section named `override_has` to the data object passed into `grunt.initConfig()`.
 
@@ -52,7 +52,7 @@ An object that contains the has.js tests that will be overwritten. The keys in t
 
 ### Usage Examples
 
-To replace blocks of `has('debug')` and `has('log-warn')` configure the task like this. Note that the keys in the `tests` object correspond to the test names. When the test name contains dashes ('-') the key must be underscored (since objects in JS can't have dashes). Follow the naming convention set by has.js and you'll be fine, alternatively you can use camelCasing (e.g. `has('isDebug')`, `has('logWarn')`).
+To replace blocks of `has('debug')` and `has('log-warn')` configure the task like this:
 
 ```js
 grunt.initConfig({
@@ -69,6 +69,8 @@ grunt.initConfig({
   },
 })
 ```
+
+Note that the keys in the `tests` object correspond to the test names. When the test name contains dashes ('-') the key must be underscored (since objects in JS can't have dashes). Follow the naming convention set by has.js and you'll be fine, alternatively you can use camelCasing (e.g. `has('isDebug')`, `has('logWarn')`).
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
